@@ -3,7 +3,6 @@ import cors from 'cors';
 import axios from 'axios';
 import https from 'https'
 
-const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(express.static('build'))
@@ -16,7 +15,6 @@ app.use(cors(corsOptions));
 const requestEndpoint = "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 app.get('/getSearchResults', async (req, res) => {
-    // console.log(requestEndpoint+req.query.q)
     try {
         const response = await axios.get(requestEndpoint+req.query.q, { 
             httpsAgent: new https.Agent({ rejectUnauthorized: false }) })
@@ -28,6 +26,4 @@ app.get('/getSearchResults', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`);
-});
+module.exports = app;
