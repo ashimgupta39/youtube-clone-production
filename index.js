@@ -3,9 +3,13 @@ import cors from 'cors';
 import axios from 'axios';
 import https from 'https';
 import path from 'path';
-
+import { fileURLToPath } from 'url';
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 const corsOptions = {
@@ -19,7 +23,6 @@ const requestEndpoint = "https://suggestqueries.google.com/complete/search?clien
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
 
 app.get('/getSearchResults', async (req, res) => {
     try {
