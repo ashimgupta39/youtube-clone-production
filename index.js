@@ -4,11 +4,9 @@ import axios from 'axios';
 import https from 'https';
 import path from 'path';
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'build')));
 
 const corsOptions = {
     origin: ["http://localhost:3000","https://youtube-clone-nine-vert.vercel.app/","https://youtube-clone-37armu1o9-ashim-guptas-projects.vercel.app/","https://youtube-clone-git-main-ashim-guptas-projects.vercel.app/"],
